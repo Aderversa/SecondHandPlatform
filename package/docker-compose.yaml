@@ -1,0 +1,42 @@
+version: "3.8"
+
+networks:
+  aderversa:
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+          gateway: 172.19.0.1
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql-project
+    ports:
+      - "8888:3306"
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: 123456
+    networks:
+      aderversa:
+        ipv4_address: 172.19.0.2
+  redis:
+    image: redis
+    container_name: redis-project
+    ports:
+      - "6379:6379"
+    networks:
+      aderversa:
+        ipv4_address: 172.19.0.3
+  shand:
+    build:
+      context: ../target
+      dockerfile: Dockerfile
+    container_name: shand
+    ports:
+      - "8080:8080"
+    networks:
+      aderversa:
+        ipv4_address: 172.19.0.4
+    depends_on:
+      - mysql
+      - redis

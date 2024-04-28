@@ -1,0 +1,7 @@
+shand:
+  mysql:
+    host: 172.19.0.2
+    username: root
+    password: 123456
+  redis:
+    host: 172.19.0.3
