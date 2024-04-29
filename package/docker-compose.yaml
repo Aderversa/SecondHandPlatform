@@ -18,7 +18,11 @@ services:
     networks:
       aderversa:
         ipv4_address: 172.19.0.2
+    environment:
+      - TZ=/Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=123456
     volumes:
+      - "../volums/mysql-volum/mysql-files:/var/lib/mysql-files"
       - "../volums/mysql-volum/conf:/etc/mysql"
       - "../volums/mysql-volum/data:/var/lib/mysql"
       - "../volums/mysql-volum/data:/var/log/mysql"
