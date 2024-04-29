@@ -1,0 +1,6 @@
+FROM mysql
+
+ENV TZ=/Asia/Shanghai
+ENV MYSQL_ROOT_PASSWORD=123456
+
+COPY mysql-ini.sql /docker-entrypoint-initdb.d

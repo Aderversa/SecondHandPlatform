@@ -9,16 +9,19 @@ networks:
 
 services:
   mysql:
-    image: mysql
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
     container_name: mysql-project
     ports:
       - "8888:3306"
-    environment:
-      TZ: Asia/Shanghai
-      MYSQL_ROOT_PASSWORD: 123456
     networks:
       aderversa:
         ipv4_address: 172.19.0.2
+    volumes:
+      - "../volums/mysql-volum/conf:/etc/mysql"
+      - "../volums/mysql-volum/data:/var/lib/mysql"
+      - "../volums/mysql-volum/data:/var/log/mysql"
   redis:
     image: redis
     container_name: redis-project
@@ -29,7 +32,7 @@ services:
         ipv4_address: 172.19.0.3
   shand:
     build:
-      context: ../target
+      context: .
       dockerfile: Dockerfile
     container_name: shand
     ports:
