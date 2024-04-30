@@ -3,6 +3,4 @@ FROM mysql
 ENV MYSQL_ROOT_PASSWORD=123456
 ENV TZ=/Asia/Shanghai
 
-RUN echo "secure-file-priv=/var/lib/mysql" >> /etc/mysql/my.cnf
-
 COPY mysql-ini.sql /docker-entrypoint-initdb.d

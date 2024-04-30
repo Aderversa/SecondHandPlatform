@@ -22,10 +22,10 @@ services:
       - TZ=/Asia/Shanghai
       - MYSQL_ROOT_PASSWORD=123456
     volumes:
-      - "../volums/mysql-volum/mysql-files:/var/lib/mysql-files"
-      - "../volums/mysql-volum/conf:/etc/mysql"
       - "../volums/mysql-volum/data:/var/lib/mysql"
-      - "../volums/mysql-volum/data:/var/log/mysql"
+      - "../volums/mysql-volum/log:/var/log/mysql"
+      - "../volums/mysql-volum/conf:/etc/mysql"
+      - "../volums/mysql-volum/mysql-files:/var/lib/mysql-files"
   redis:
     image: redis
     container_name: redis-project
