@@ -37,6 +37,12 @@ services:
         ipv4_address: 172.19.0.3
     volumes:
       - "../volums/redis-volum/sysctl.conf:/etc/sysctl.conf"
+    command:
+      - /bin/bash
+      - -c
+      - |
+        echo 551 > /proc/sys/net/core/somaxconn
+        redis-server /etc/sysctl.conf
   shand:
     build:
       context: .
