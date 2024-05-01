@@ -29,11 +29,14 @@ services:
   redis:
     image: redis:6.2.6
     container_name: redis-project
+    privileged: true
     ports:
       - "6379:6379"
     networks:
       aderversa:
         ipv4_address: 172.19.0.3
+    volumes:
+      - "../volums/redis-volum/sysctl.conf:/etc/sysctl.conf"
   shand:
     build:
       context: .
