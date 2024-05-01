@@ -36,13 +36,14 @@ services:
       aderversa:
         ipv4_address: 172.19.0.3
     volumes:
-      - "../volums/redis-volum/sysctl.conf:/etc/sysctl.conf"
       - "../volums/redis-volum/data:/data"
+      - "../volums/redis-volum/conf/redis.conf:/etc/redis/redis.conf"
     command:
       - /bin/bash
       - -c
       - |
         echo 551 > /proc/sys/net/core/somaxconn
+        redis-server /etc/redis/redis.conf
   shand:
     build:
       context: .
