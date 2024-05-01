@@ -27,7 +27,7 @@ services:
       - "../volums/mysql-volum/conf:/etc/mysql"
       - "../volums/mysql-volum/mysql-files:/var/lib/mysql-files"
   redis:
-    image: redis
+    image: redis:6.2.6
     container_name: redis-project
     ports:
       - "6379:6379"
