@@ -11,6 +11,7 @@ import com.onezhan.util.ThreadLocalUtil;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.TimeoutUtils;
 import org.springframework.data.redis.core.ValueOperations;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -61,8 +63,8 @@ public class UserController {
         map.put("username", user.getUsername());
         String token = JwtUtils.sign(map);
         assert token != null;
-        ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
-        operations.set(token, token, JwtUtils.getExpireTime(), TimeUnit.SECONDS);
+        SetOperations<String, String> operations = stringRedisTemplate.opsForSet();
+        operations.add(username, token);
         return Result.success(token);
     }
     @GetMapping("/getInfo")
@@ -97,8 +99,10 @@ public class UserController {
         if(!newPwd.equals(confirmPwd)) {
             return Result.error("两次输入的密码不相同");
         }
+        SetOperations<String, String> operations = stringRedisTemplate.opsForSet();
+        stringRedisTemplate.delete(username);
+        // 把token删完再改密码防止他没删完抛出异常，但是密码已经改了
         userService.changePwd(username, MD5Util.md5(newPwd));
-        stringRedisTemplate.delete(token);
         return Result.success();
     }
 }
