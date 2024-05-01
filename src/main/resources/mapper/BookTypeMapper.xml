@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.onezhan.mapper.BookTypeMapper">
+    <insert id="addType">
+        INSERT INTO second_hand.book_type (name) VALUES (#{typeName})
+    </insert>
+    <select id="getAllType">
+        SELECT * FROM book_type
+    </select>
+    <select id="findByTypeName" resultType="BookType">
+        SELECT * FROM book_type where name=#{typeName}
+    </select>
+</mapper>

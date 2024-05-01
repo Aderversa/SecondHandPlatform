@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper {
     User getByUserName(String username);
     void register(@Param("username")String username, @Param("password")String password);
+    void updateMsg(User user);
+    void changePwd(@Param("username")String username, @Param("newPwd")String newPwd);
 }

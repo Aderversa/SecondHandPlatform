@@ -12,13 +12,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    Integer id;
-    String username;
+    private Integer id;
+    private String username;
     @JsonIgnore
-    String password;
-    String nickname;
-    String email;
-    String userImg;
-    LocalDateTime updateTime;
-    LocalDateTime createTime;
+    private String password;
+    private String nickname;
+    private String email;
+    private String userImg;
+    private LocalDateTime updateTime;
+    private LocalDateTime createTime;
+    private Integer power;
 }

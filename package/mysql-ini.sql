@@ -11,18 +11,20 @@ create table user
     email varchar(128) default '' comment '邮箱',
     user_img varchar(128) default '' null comment '头像',
     update_time date not null comment '更新时间',
-    create_time date not null comment '创建时间'
+    create_time date not null comment '创建时间',
+    power tinyint not null default 1 comment '权限'
 )default character set utf8mb4 comment '用户表';
 
 create table book_type
 (
-    id int unsigned primary key comment '类别ID',
+    id int unsigned primary key auto_increment comment '类别ID',
     name varchar(20) not null comment '类别名'
 )default character set utf8mb4 comment '书籍类别';
 
 create table book
 (
     id int unsigned primary key auto_increment comment '书籍ID',
+    name varchar(50) not null comment '书籍名称',
     type_id int unsigned not null comment '类别',
     price decimal(12, 2) not null comment '价格',
     isbn varchar(20) not null comment 'ISBN号',
@@ -33,7 +35,7 @@ create table book
     purchased int not null comment '是否已被购买',
     constraint type foreign key (type_id) references book_type(id),
     constraint seller foreign key (seller_id) references user(id)
-);
+)default character set utf8mb4 comment '待售书籍';
 
 create table `order`
 (
@@ -43,4 +45,4 @@ create table `order`
     address varchar(100) not null comment '收货地址',
     constraint buyer foreign key (user_id) references user(id),
     constraint want_book foreign key (book_id) references book(id)
-)comment '用户购买的商品';
+)default character set utf8mb4 comment '订单';

@@ -20,4 +20,14 @@ public class UserServiceImpl implements UserService {
     public void register(String username, String password) {
         userMapper.register(username, password);
     }
+
+    @Override
+    public void updateMsg(User user) {
+        userMapper.updateMsg(user);
+    }
+
+    @Override
+    public void changePwd(String username, String newPwd) {
+        userMapper.changePwd(username, newPwd);
+    }
 }

@@ -1,7 +1,7 @@
 FROM openjdk:17
 
 COPY *.jar /app.jar
-COPY application-local.yaml /application.yaml
+COPY ./application-local.yaml /application.yaml
 
 CMD ["--server.port=8080"]
 

@@ -8,6 +8,7 @@ import com.onezhan.service.UserService;
 import com.onezhan.util.JwtUtils;
 import com.onezhan.util.MD5Util;
 import com.onezhan.util.ThreadLocalUtil;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -70,5 +71,34 @@ public class UserController {
         String username = claims.get("username").asString();
         User user = userService.getByUserName(username);
         return Result.success(user);
+    }
+    @PatchMapping("/changeMsg")
+    public Result changeMsg(@Pattern(regexp = "^\\S{2,10}$")String nickname,
+                            @Email String email) {
+        Map<String, Claim> claims = ThreadLocalUtil.get();
+        String username = claims.get("username").asString();
+        User user = userService.getByUserName(username);
+        user.setNickname(nickname);
+        user.setEmail(email);
+        userService.updateMsg(user);
+        return Result.success();
+    }
+    @PatchMapping("/changePassword")
+    public Result changePassword(@Pattern(regexp = "^\\S{5,16}$")String oldPwd,
+                                 @Pattern(regexp = "^\\S{5,16}$")String newPwd,
+                                 @Pattern(regexp = "^\\S{5,16}$")String confirmPwd,
+                                 @RequestHeader(name = "Authorization")String token) {
+        Map<String, Claim> claims = ThreadLocalUtil.get();
+        String username = claims.get("username").asString();
+        User user = userService.getByUserName(username);
+        if(!user.getPassword().equals(MD5Util.md5(oldPwd))) {
+            return Result.error("原密码错误");
+        }
+        if(!newPwd.equals(confirmPwd)) {
+            return Result.error("两次输入的密码不相同");
+        }
+        userService.changePwd(username, MD5Util.md5(newPwd));
+        stringRedisTemplate.delete(token);
+        return Result.success();
     }
 }

@@ -9,4 +9,10 @@
     <insert id="register">
         INSERT INTO second_hand.user (username, password, update_time, create_time) VALUES (#{username}, #{password}, NOW(), NOW())
     </insert>
+    <update id="updateMsg">
+        UPDATE second_hand.user SET nickname=#{nickname}, email=#{email} WHERE username=#{username}
+    </update>
+    <update id="changePwd">
+        UPDATE second_hand.user SET password=#{newPwd} WHERE username=#{username}
+    </update>
 </mapper>

@@ -1,12 +1,12 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:8888/second_hand?characterEncoding=utf8&serverTimezone=UTC
-    username: root
-    password: 123456
+    url: jdbc:mysql://${shand.mysql.host}:${shand.mysql.port}/second_hand?characterEncoding=utf8&serverTimezone=UTC
+    username: ${shand.mysql.username}
+    password: ${shand.mysql.password}
   data:
     redis:
-      host: localhost
+      host: ${shand.redis.host}
       port: 6379
 mybatis:
   configuration:
