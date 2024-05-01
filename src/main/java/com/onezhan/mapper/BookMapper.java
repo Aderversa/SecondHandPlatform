@@ -9,4 +9,7 @@ import java.util.List;
 public interface BookMapper {
     void addBook(Book book);
     List<Book> getAll();
+
+    List<Book> searchBooks(String content);
+
 }

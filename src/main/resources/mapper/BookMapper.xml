@@ -10,4 +10,7 @@
     <select id="getAll" resultType="Book">
         SELECT * FROM second_hand.book;
     </select>
+    <select id="searchBooks" resultType="Book">
+        SELECT * FROM second_hand.book WHERE name LIKE #{content}
+    </select>
 </mapper>
