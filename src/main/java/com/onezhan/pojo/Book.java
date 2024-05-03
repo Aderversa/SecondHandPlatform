@@ -33,5 +33,6 @@ public class Book {
     private String detail;
     private LocalDate releaseTime;
     private Integer sellerId;
+    private String sellerName;
     private Integer purchased;
 }

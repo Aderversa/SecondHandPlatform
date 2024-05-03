@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.onezhan.mapper.BookMapper">
     <insert id="addBook" parameterType="Book">
-        INSERT INTO second_hand.book (name, type_id, price, isbn, detail, seller_id, release_time, purchased)
-        VALUES (#{name}, #{typeId}, #{price}, #{isbn}, #{detail}, #{sellerId}, NOW(), 0)
+        INSERT INTO second_hand.book (name, type_id, price, isbn, detail, seller_id, seller_name, release_time, purchased)
+        VALUES (#{name}, #{typeId}, #{price}, #{isbn}, #{detail}, #{sellerId}, #{sellerName}, NOW(), 0)
     </insert>
     <select id="getAll" resultType="Book">
         SELECT * FROM second_hand.book;

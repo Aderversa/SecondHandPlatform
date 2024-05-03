@@ -24,7 +24,9 @@ public class BookController {
     public Result addBook(@RequestBody Book book) {
         Map<String, Claim> claims = ThreadLocalUtil.get();
         Integer id = claims.get("id").asInt();
+        String sellerName = claims.get("username").asString();
         book.setSellerId(id);
+        book.setSellerName(sellerName);
         if (!StringUtils.hasLength(book.getDetail())) {
             book.setDetail("这个用户很懒，什么都没有写");
         }
