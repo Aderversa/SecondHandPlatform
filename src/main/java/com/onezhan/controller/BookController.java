@@ -28,6 +28,9 @@ public class BookController {
         if (!StringUtils.hasLength(book.getDetail())) {
             book.setDetail("这个用户很懒，什么都没有写");
         }
+        if(book.getTypeId() == null) {
+            book.setTypeId(1);
+        }
         bookService.addBook(book);
         return Result.success();
     }

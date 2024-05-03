@@ -46,3 +46,5 @@ create table `order`
     constraint buyer foreign key (user_id) references user(id),
     constraint want_book foreign key (book_id) references book(id)
 )default character set utf8mb4 comment '订单';
+
+insert into book_type (name) values ('全部'), ('教材'), ('实验报告'), ('小说'), ('科幻');

@@ -2,6 +2,7 @@ package com.onezhan.pojo;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class Book {
     private Integer id;
     @NotEmpty
     private String name;
-    @NotNull
+    @Null
     private Integer typeId;
     @NotNull
     private String price;
