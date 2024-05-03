@@ -2,6 +2,8 @@ create database if not exists second_hand;
 
 use second_hand;
 
+SET NAMES 'utf8mb4';
+
 create table user
 (
     id int unsigned primary key auto_increment comment '用户ID',
@@ -47,4 +49,4 @@ create table `order`
     constraint want_book foreign key (book_id) references book(id)
 )default character set utf8mb4 comment '订单';
 
-insert into book_type (name) values ('全部'), ('教材'), ('实验报告'), ('小说'), ('科幻');
+insert into book_type (name) values ('全部');
