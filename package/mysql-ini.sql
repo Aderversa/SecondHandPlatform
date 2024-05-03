@@ -37,8 +37,7 @@ create table book
     seller_name varchar(20) not null comment '卖家名',
     purchased int not null comment '是否已被购买',
     constraint type foreign key (type_id) references book_type(id),
-    constraint seller foreign key (seller_id) references user(id),
-    constraint seller_name foreign key (seller_name) references user(username)
+    constraint seller foreign key (seller_id) references user(id)
 )default character set utf8mb4 comment '待售书籍';
 
 create table `order`
