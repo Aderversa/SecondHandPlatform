@@ -10,16 +10,14 @@ import com.onezhan.service.UserService;
 import com.onezhan.util.ThreadLocalUtil;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/type")
+@CrossOrigin // 支持跨域，axios可以访问下面的接口哦
 public class BookTypeController {
     @Autowired
     UserService userService;

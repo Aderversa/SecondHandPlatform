@@ -17,6 +17,7 @@ import java.util.Map;
 @Validated
 @RestController
 @RequestMapping("/book")
+@CrossOrigin
 public class BookController {
     @Autowired
     BookService bookService;
