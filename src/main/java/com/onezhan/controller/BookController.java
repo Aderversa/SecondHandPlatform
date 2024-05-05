@@ -48,7 +48,7 @@ public class BookController {
         }
         return Result.success(bookService.searchBooks(content));
     }
-    @GetMapping("/sort")
+    @PostMapping("/sort")
     public Result bookSort(@NotNull Integer mode, @RequestBody List<Book> books) {
         return switch (mode) {
             case 1 -> Result.success(bookService.sortByPriceASC(books));
