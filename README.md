@@ -3,7 +3,7 @@
 
 ```shell
 cd package
-docker compose -f docker-compose.yaml -p second-hand-platform up -d
+./install.sh
 ```
 执行完上述语句之后哦，docker会自动启动服务器，并持久化MySQL的数据到volums目录下的mysql-volum/data中
 
