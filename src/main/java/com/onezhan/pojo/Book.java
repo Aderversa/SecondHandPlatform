@@ -27,6 +27,7 @@ public class Book {
     private String price;
     @ISBN
     private String isbn;
+    @Null
     @URL
     private String img;
     @Pattern(regexp = "^[\\s\\S]{0,500}$") // 500字以内的所有字符
