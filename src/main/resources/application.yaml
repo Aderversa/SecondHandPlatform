@@ -8,6 +8,8 @@ spring:
     redis:
       host: ${shand.redis.host}
       port: 6379
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
