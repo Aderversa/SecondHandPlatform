@@ -1,1 +1,4 @@
 target/
+
+volums/mysql-volum/data
+volums/redis-volum/data
